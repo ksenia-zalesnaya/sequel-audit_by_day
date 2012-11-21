@@ -32,8 +32,8 @@ Given following models:
 # end
 #
 class User < Sequel::Model
-  def admin_in_audit?
-    admin
+  def audit_kind
+    admin ? "admin" : "user"
   end
 end
 #
@@ -65,8 +65,8 @@ end
 #       Time        :expired_at
 #       Date        :valid_from
 #       Date        :valid_to
-#       foreign_key :title_updated_by_id, :users, on_delete: :set_null
-#       foreign_key :admin_user_id, :users, on_delete: :set_null
+#       foreign_key :title_updated_by_user_id, :users, on_delete: :set_null
+#       foreign_key :title_updated_by_admin_id, :users, on_delete: :set_null
 #       index [:master_id, :created_at, :valid_from, :valid_to]
 #     end
 #   end
