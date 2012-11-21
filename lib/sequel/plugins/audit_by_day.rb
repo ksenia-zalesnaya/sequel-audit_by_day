@@ -18,6 +18,7 @@ module Sequel
         master.instance_eval do
           @audit_foreign_key = audit_foreign_key
           @audit_checked_columns = Set.new version_columns
+          @default_valid_from = default_valid_from
         end
       end
 
@@ -42,7 +43,7 @@ module Sequel
             attrs[:admin_user_id] = nil
           end
           audit_for_day.update_attributes attrs.merge({
-            partial_update: true, valid_from: self.class.default_valid_from
+            partial_update: true, valid_from: default_valid_from
           })
         end
       end
