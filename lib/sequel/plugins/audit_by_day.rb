@@ -29,7 +29,8 @@ module Sequel
           :audit_version_columns, :audit_default_valid_from
 
         def find_for(audited_id, at)
-          where(audit_foreign_key => audited_id, :for => at).with_current_version.first
+          where(audit_foreign_key => audited_id, :for => at).
+            with_current_version.limit(1).all.first
         end
 
         def audit(master, previous_values, updated_values, update_time, updated_by)
