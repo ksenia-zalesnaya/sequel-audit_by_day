@@ -65,6 +65,7 @@ end
 #       Time        :expired_at
 #       Date        :valid_from
 #       Date        :valid_to
+#       foreign_key :title_updated_at, Time
 #       foreign_key :title_updated_by_user_id, :users, on_delete: :set_null
 #       foreign_key :title_updated_by_admin_id, :users, on_delete: :set_null
 #       index [:master_id, :created_at, :valid_from, :valid_to]
