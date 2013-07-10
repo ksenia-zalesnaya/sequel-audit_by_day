@@ -3,6 +3,8 @@ module Sequel
     module AuditByDay
       require "set"
 
+      class AuditKindNotFound < ::StandardError; end
+
       def self.configure(master, opts={})
         audit_foreign_key = opts[:foreign_key]
         default_valid_from = opts.fetch(:default_valid_from){ Time.utc(1000) }
