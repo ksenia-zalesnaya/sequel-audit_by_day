@@ -57,7 +57,7 @@ module Sequel
                 attrs[column] = nil
               end
             end
-            attrs["#{column_name}_at"] = ::Sequel::Plugins::Bitemporal.point_in_time
+            attrs["#{column_name}_updated_at"] = ::Sequel::Plugins::Bitemporal.point_in_time
           end
           audit_for_day.update_attributes attrs.merge(valid_from: audit_default_valid_from)
         end
