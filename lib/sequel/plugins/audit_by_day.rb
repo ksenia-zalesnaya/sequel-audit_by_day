@@ -9,6 +9,7 @@ module Sequel
         audit_foreign_key = opts[:foreign_key]
         default_valid_from = opts.fetch(:default_valid_from){ Time.utc(1000) }
         updated_by_regexp = opts.fetch(:updated_by_regexp){ /(.+)_updated_by_(.+)_id/ }
+        return master.db.log_info("Audit table does not exist for #{master.audit_class}") unless master.db.table_exists?(master.table_name)
         raise Error, ":foreign_key options is required for audit" unless audit_foreign_key
         raise Error, ":foreign_key column does not exists for audit" unless master.columns.include? audit_foreign_key
         version_columns = {}
